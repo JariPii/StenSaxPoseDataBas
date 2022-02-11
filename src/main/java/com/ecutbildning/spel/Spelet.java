@@ -2,10 +2,9 @@ package com.ecutbildning.spel;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Service
 public class Spelet{
@@ -27,12 +26,14 @@ public class Spelet{
         }
 
 
+
         List<Player> motståndare = List.of(
                 new Player("Slumpis"),
-                new Player("Vokalis"),
+                new Player("Vokalis,"),
                 new Player("Tidis")
         );
         playerRepository.saveAll(motståndare);
+        Date currentDate = new Date();
 
 
         for (int i = 0; i < motståndare.size(); i++) {
@@ -61,18 +62,17 @@ public class Spelet{
             switch (motståndare.get(i).getDrag()) {
                 case 1:
                     motståndare.get(i).setDrag(1);
-                    System.out.println(motståndare.get(i).name + " Har valt Sten");
+                    //System.out.println(motståndare.get(i).name + " Har valt Sten");
                     break;
                 case 2:
                     motståndare.get(i).setDrag(2);
-                    System.out.println(motståndare.get(i).name + " Har valt sax");
+                    //System.out.println(motståndare.get(i).name + " Har valt sax");
                     break;
                 case 3:
                     motståndare.get(i).setDrag(3);
-                    System.out.println(motståndare.get(i).name + " Har valt påse");
+                    //System.out.println(motståndare.get(i).name + " Har valt påse");
                     break;
             }
-
             result.beslutaVinnare(spelare, motståndare.get(i));
             if(i == 0){
                 result.beslutaVinnare(motståndare.get(i + 1), motståndare.get(i + 2));
@@ -81,19 +81,22 @@ public class Spelet{
             }else {
                 result.beslutaVinnare(motståndare.get(0), motståndare.get(1));
             }
-            result.antalMatcher++;
+
+            result.matcher++;
+            System.out.println(motståndare.get(i).name + " HAR VALT " +motståndare.get(i).getDrag());
 
         }
 
-        Statistik statistik = new Statistik(playerRepository);
+        Statistik statistik = new Statistik(playerRepository, name);
         List<Player> allaSpelare = new ArrayList<>();
-
+        statistik.antalMatcher();
         for(Player bot : motståndare){
                   allaSpelare.add(bot);
         };
 
         allaSpelare.add(spelare);
         statistik.setSpelare(allaSpelare);
+//        statistik.setAntalMatcher(statistik.getAntalMatcher()+3);
 
 
         System.out.println("Matcher spelade: " + result.matcher);

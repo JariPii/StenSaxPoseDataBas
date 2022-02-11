@@ -1,6 +1,6 @@
 package com.ecutbildning;
 
-import com.ecutbildning.entity.EmployeeEntity;
+//import com.ecutbildning.entity.EmployeeEntity;
 import com.ecutbildning.spel.PlayerRepository;
 import com.ecutbildning.spel.Spelet;
 import com.ecutbildning.spel.Statistik;
@@ -8,14 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import com.ecutbildning.repository.EmplyeeRepository;
+//import com.ecutbildning.repository.EmplyeeRepository;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
 @SpringBootApplication
-@ComponentScan
+//@ComponentScan
 public class TestbasApplication implements CommandLineRunner {
 
     @Autowired
@@ -40,7 +40,7 @@ public class TestbasApplication implements CommandLineRunner {
 
         Spelet spelet = new Spelet();
 
-        Statistik statistik = new Statistik(playerRepository);
+        Statistik statistik = new Statistik(playerRepository, name);
         //while loop
         while(runProgram){
             System.out.println("\nMenyval!\n 1: spela\n 2: statistik\n 3: avsluta");
@@ -53,7 +53,6 @@ public class TestbasApplication implements CommandLineRunner {
                     break;
                 case 2:
                     System.out.println("Du valde 2");
-                    //Kalla på metod för att visa statistik
                     statistik.visaStatistik();
                     break;
                 default:

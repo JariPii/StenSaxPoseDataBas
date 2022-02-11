@@ -1,5 +1,8 @@
 package com.ecutbildning.spel;
 
+import net.bytebuddy.build.ToStringPlugin;
+import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Date;
@@ -14,14 +17,14 @@ class Player {
     int lika;
     int förluster;
     int drag;
-    Date time;
 
-    public void setTime(Date time) {
-        this.time = time;
-    }
+    /*public int setAntalMathcer(int antalMatcher){
+       return this.antalMatcher = antalMatcher;
+    }*/
 
     public Player(String name) {
         this.name = name;
+
     }
 
     public Player() {
@@ -51,6 +54,7 @@ class Player {
                 "name='" + name + '\'' +
                 ", vinster=" + vinster +
                 ", lika=" + lika +
-                ", förluster=" + förluster + " }";
+                ", förluster=" + förluster +
+                " }";
     }
 }

@@ -9,11 +9,16 @@ import java.util.stream.Collectors;
 
 public class Statistik {
 
-    private int antalMatcher;
-    PlayerRepository playerRepository;
 
-    public Statistik(PlayerRepository playerRepository){
+    PlayerRepository playerRepository;
+    String name;
+    int matcher;
+
+    public Statistik(PlayerRepository playerRepository, String name){
         this.playerRepository = playerRepository;
+        this.name = name;
+
+
     }
 
 
@@ -22,13 +27,31 @@ public class Statistik {
 
     public void visaStatistik(){
         System.out.println("Visar statistik");
-        spelare = new ArrayList<>(
+        spelare = new ArrayList<>();
+
+        playerRepository.findAll().stream().forEach(x ->spelare.add(x));
+
+
+
+        spelare.stream().sorted(Comparator.comparing(Player::getVinster).reversed()).toList().forEach(System.out::println);
+
+        System.out.println("---------------------------");
+
+        //Snyggt fixat!
+
+        System.out.println("Snitt " +
+                spelare.stream().collect(Collectors.averagingDouble(Player::getVinster))
+        );
+//        spelare.stream().filter(x -> x.name.equals(name)).forEach(System.out::println)
+        /*spelare = new ArrayList<>(
                 playerRepository.findAll()
                         .stream()
                         .sorted(Comparator.comparing(Player::getVinster).reversed())
                         .toList()
         );
-        spelare.forEach(System.out::println);
+        spelare.forEach(System.out::println);*/
+        //en ström för att visa ens egen vinst %
+
     }
 
     public List<Player> getSpelare() {
@@ -39,11 +62,15 @@ public class Statistik {
         this.spelare = spelare;
     }
 
-    public int getAntalMatcher() {
-        return antalMatcher;
+    public void antalMatcher(){
+        matcher++;
     }
 
-    public void setAntalMatcher(int antalMatcher) {
+    //public int getAntalMatcher() {
+     //   return antalMatcher;
+    //}
+
+   /* public void setAntalMatcher(int antalMatcher) {
         this.antalMatcher = antalMatcher;
     }
-}
+*/}
