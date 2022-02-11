@@ -2,6 +2,7 @@ package com.ecutbildning.spel;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.sql.Date;
 
 @Entity
 public
@@ -13,6 +14,11 @@ class Player {
     int lika;
     int förluster;
     int drag;
+    Date time;
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
 
     public Player(String name) {
         this.name = name;
@@ -40,12 +46,10 @@ class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
+        return "Player{ " +
                 "name='" + name + '\'' +
                 ", vinster=" + vinster +
                 ", lika=" + lika +
-                ", förluster=" + förluster +
-                ", drag=" + drag +
-                '}';
+                ", förluster=" + förluster + " }";
     }
 }
