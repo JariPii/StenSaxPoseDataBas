@@ -44,6 +44,7 @@ class Player {
         return förluster;
     }
 
+
     @Override
     public String toString() {
         return "Player{ " +

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 class Result {
-    int antalMatcher;
+    int matcher;
     PlayerRepository playerRepository;
 
     public Result(PlayerRepository playerRepository){

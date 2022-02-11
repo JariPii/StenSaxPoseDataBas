@@ -96,7 +96,7 @@ public class Spelet{
         statistik.setSpelare(allaSpelare);
 
 
-        System.out.println("Matcher spelade: " + result.antalMatcher);
+        System.out.println("Matcher spelade: " + result.matcher);
         System.out.println("Du vann: " + spelare.vinster + " Matcher");
         for(Player bot : motståndare){
             System.out.println(bot.name + "Har " + bot.vinster + " Vinster \n");
