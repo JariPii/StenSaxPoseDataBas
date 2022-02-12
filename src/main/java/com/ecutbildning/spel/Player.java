@@ -1,11 +1,7 @@
 package com.ecutbildning.spel;
 
-import net.bytebuddy.build.ToStringPlugin;
-import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.sql.Date;
 
 @Entity
 public

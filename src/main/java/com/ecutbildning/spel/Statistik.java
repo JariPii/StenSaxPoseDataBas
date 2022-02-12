@@ -1,6 +1,5 @@
 package com.ecutbildning.spel;
 
-
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -9,28 +8,22 @@ public class Statistik {
 
     PlayerRepository playerRepository;
     String name;
-    int matcher;
 
     public Statistik(PlayerRepository playerRepository, String name){
         this.playerRepository = playerRepository;
         this.name = name;
 
-
     }
-
 
     List<Player> spelare = new ArrayList<>();
 
-
     public void visaStatistik(){
+
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
         System.out.println("Visar statistik");
         spelare = new ArrayList<>();
 
         playerRepository.findAll().stream().forEach(x ->spelare.add(x));
-
-
-
-        spelare.stream().sorted(Comparator.comparing(Player::getVinster).reversed()).toList().forEach(System.out::println);
 
         List<Player> spelaren = spelare.stream().filter(x -> x.name.equals(name)).toList();
         if(spelaren.size() <= 0){
@@ -51,10 +44,6 @@ public class Statistik {
             System.out.println("Procent lika");
             System.out.println(numberFormat.format(spelarLikaProcent) + "%");
         }
-    }
-
-    public List<Player> getSpelare() {
-        return spelare;
     }
 
     public void setSpelare(List<Player> spelare) {

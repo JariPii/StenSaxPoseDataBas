@@ -7,6 +7,7 @@ import java.util.*;
 @Service
 public class Spelet{
 
+    int antalMatcher = 0;
 
     public void spelet(String name, PlayerRepository playerRepository) {
 
@@ -17,13 +18,12 @@ public class Spelet{
         Player spelare = new Player(name);
 
         Optional<Player> plFromDatabase = playerRepository.findById(spelare.name);
+
         if(plFromDatabase.isPresent()){
             spelare = plFromDatabase.orElseThrow();
         } else {
             playerRepository.save(spelare);
         }
-
-
 
         List<Player> motståndare = List.of(
                 new Player("Slumpis"),
@@ -31,8 +31,6 @@ public class Spelet{
                 new Player("Tidis")
         );
         playerRepository.saveAll(motståndare);
-        Date currentDate = new Date();
-
 
         for (int i = 0; i < motståndare.size(); i++) {
             System.out.println("Du möter : " + motståndare.get(i).name);
@@ -76,7 +74,7 @@ public class Spelet{
             }else {
                 result.beslutaVinnare(motståndare.get(0), motståndare.get(1));
             }
-
+            this.antalMatcher++;
             result.matcher++;
             System.out.println(motståndare.get(i).name + " HAR VALT " +motståndare.get(i).getDrag());
 
@@ -84,7 +82,7 @@ public class Spelet{
 
         Statistik statistik = new Statistik(playerRepository, name);
         List<Player> allaSpelare = new ArrayList<>();
-        statistik.antalMatcher();
+
         for(Player bot : motståndare){
                   allaSpelare.add(bot);
         };
