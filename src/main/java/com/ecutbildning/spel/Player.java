@@ -18,17 +18,16 @@ class Player {
     int förluster;
     int drag;
 
-    /*public int setAntalMathcer(int antalMatcher){
-       return this.antalMatcher = antalMatcher;
-    }*/
-
     public Player(String name) {
         this.name = name;
-
     }
 
     public Player() {
 
+    }
+
+    public int getLika() {
+        return lika;
     }
 
     public int setDrag(int drag) {
@@ -57,4 +56,5 @@ class Player {
                 ", förluster=" + förluster +
                 " }";
     }
+
 }

@@ -27,4 +27,5 @@ public class Vokalis implements Datormotståndare {
     public void setSpelarNamn(String spelarNamn) {
         this.spelarNamn = spelarNamn;
     }
+
 }

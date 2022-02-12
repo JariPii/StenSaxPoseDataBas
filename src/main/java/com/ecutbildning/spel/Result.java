@@ -33,8 +33,6 @@ class Result {
         }
         playerRepository.save(a);
         playerRepository.save(b);
-//        a.antalMatcher++;
-//        b.antalMatcher++;
         System.out.println("<---------------->");
     }
 }

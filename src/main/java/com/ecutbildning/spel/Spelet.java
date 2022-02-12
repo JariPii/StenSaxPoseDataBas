@@ -2,8 +2,6 @@ package com.ecutbildning.spel;
 
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -62,15 +60,12 @@ public class Spelet{
             switch (motståndare.get(i).getDrag()) {
                 case 1:
                     motståndare.get(i).setDrag(1);
-                    //System.out.println(motståndare.get(i).name + " Har valt Sten");
                     break;
                 case 2:
                     motståndare.get(i).setDrag(2);
-                    //System.out.println(motståndare.get(i).name + " Har valt sax");
                     break;
                 case 3:
                     motståndare.get(i).setDrag(3);
-                    //System.out.println(motståndare.get(i).name + " Har valt påse");
                     break;
             }
             result.beslutaVinnare(spelare, motståndare.get(i));
@@ -96,8 +91,6 @@ public class Spelet{
 
         allaSpelare.add(spelare);
         statistik.setSpelare(allaSpelare);
-//        statistik.setAntalMatcher(statistik.getAntalMatcher()+3);
-
 
         System.out.println("Matcher spelade: " + result.matcher);
         System.out.println("Du vann: " + spelare.vinster + " Matcher");
@@ -118,7 +111,6 @@ public class Spelet{
         int slumpisDrag = slumpis.valAvDrag();
         int vokalisDrag = vokalis.valAvDrag();
 
-
         switch(name){
             case "Slumpis" :
                 return slumpisDrag;
@@ -126,12 +118,8 @@ public class Spelet{
                 return vokalisDrag;
             default:
                 return tidisDrag;
-
         }
-
     }
-
-
 }
 
 

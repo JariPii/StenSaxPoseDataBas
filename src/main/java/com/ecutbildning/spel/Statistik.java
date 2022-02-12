@@ -1,11 +1,8 @@
 package com.ecutbildning.spel;
 
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import java.text.DecimalFormat;
+import java.util.*;
 
 public class Statistik {
 
@@ -35,23 +32,25 @@ public class Statistik {
 
         spelare.stream().sorted(Comparator.comparing(Player::getVinster).reversed()).toList().forEach(System.out::println);
 
-        System.out.println("---------------------------");
-
-        //Snyggt fixat!
-
-        System.out.println("Snitt " +
-                spelare.stream().collect(Collectors.averagingDouble(Player::getVinster))
-        );
-//        spelare.stream().filter(x -> x.name.equals(name)).forEach(System.out::println)
-        /*spelare = new ArrayList<>(
-                playerRepository.findAll()
-                        .stream()
-                        .sorted(Comparator.comparing(Player::getVinster).reversed())
-                        .toList()
-        );
-        spelare.forEach(System.out::println);*/
-        //en ström för att visa ens egen vinst %
-
+        List<Player> spelaren = spelare.stream().filter(x -> x.name.equals(name)).toList();
+        if(spelaren.size() <= 0){
+            System.out.println("Ingen spelare vid det namnet har spelat ännu");
+        }else{
+            int spelarVinster = spelaren.get(0).getVinster();
+            int matcher = spelaren.get(0).getVinster() + spelaren.get(0).getFörluster() + spelaren.get(0).getLika();
+            double spelarVinstProcent = (double)spelarVinster / matcher * 100;
+            double spelarFörlustProcent = (double)spelaren.get(0).getFörluster() / matcher * 100;
+            double spelarLikaProcent = (double)spelaren.get(0).getLika() / matcher * 100;
+            System.out.println("\n     STATISTIK");
+            System.out.println("Procent vinster");
+            System.out.println(numberFormat.format(spelarVinstProcent) + "%");
+            System.out.println("---------------------------");
+            System.out.println("Procent förlust");
+            System.out.println(numberFormat.format(spelarFörlustProcent) + "%");
+            System.out.println("---------------------------");
+            System.out.println("Procent lika");
+            System.out.println(numberFormat.format(spelarLikaProcent) + "%");
+        }
     }
 
     public List<Player> getSpelare() {
@@ -62,15 +61,4 @@ public class Statistik {
         this.spelare = spelare;
     }
 
-    public void antalMatcher(){
-        matcher++;
-    }
-
-    //public int getAntalMatcher() {
-     //   return antalMatcher;
-    //}
-
-   /* public void setAntalMatcher(int antalMatcher) {
-        this.antalMatcher = antalMatcher;
-    }
-*/}
+}
